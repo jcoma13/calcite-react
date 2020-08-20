@@ -25,21 +25,48 @@ import {
   StyledCardContent,
   StyledCardImageWrap
 } from '../Card/Card-styled';
+import {
+  StyledCheckboxGroup,
+  StyledDisplayCheckbox
+} from '../Checkbox/Checkbox-styled';
 
 // Icons
 import UserIcon from 'calcite-ui-icons-react/UserIcon';
 import CalendarIcon from 'calcite-ui-icons-react/CalendarIcon';
+import Checkbox from '../Checkbox/Checkbox';
 
 // Third party libraries
 
 const StyledItemCard = styled(StyledCard)`
   border-radius: ${props => props.theme.borderRadius};
+  position: relative;
 
   ${props =>
     props.vertical &&
     css`
       max-width: calc(33.3% - 1.5rem);
     `};
+  ${StyledCheckboxGroup} {
+    z-index: 1;
+    position: absolute;
+    top: 10;
+    left: 10;
+  }
+  ${StyledDisplayCheckbox} {
+    width: 22px;
+    height: 22px;
+    background-color: rgba(255, 255, 255, 0.4);
+    opacity: 1;
+    padding: 0.5rem 0.5rem 0.25rem 0.5rem;
+  }
+  input:hover
+    ~ ${StyledDisplayCheckbox},
+    input:focus
+    ~ ${StyledDisplayCheckbox} {
+    box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 2px inset,
+      rgba(81, 167, 232, 0.5) 0px 0px 5px, rgba(81, 167, 232, 0.5) 0px 0px 5px;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
 `;
 StyledItemCard.defaultProps = { theme };
 
@@ -85,6 +112,8 @@ StyledItemCardImageWrap.defaultProps = { theme };
 const StyledCardItemTitle = styled(StyledCardTitle)`
   ${fontSize(1)};
   margin: ${props => unitCalc(props.theme.baseline, 3, '/')};
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 StyledCardItemTitle.defaultProps = { theme };
 

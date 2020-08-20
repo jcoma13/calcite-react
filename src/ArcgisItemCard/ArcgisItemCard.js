@@ -21,9 +21,9 @@ import {
   StyledCardItemIconLabelText,
   StyledUserIcon,
   StyledCalendarIcon,
-  StyledActionsContainer,
-  StyledDivider
+  StyledActionsContainer
 } from './ArcgisItemCard-styled';
+import Checkbox from '../Checkbox/Checkbox';
 
 const ArcgisItemCard = ({
   item,
@@ -34,6 +34,10 @@ const ArcgisItemCard = ({
   token,
   vertical,
   actions,
+  selectable,
+  checked,
+  onChange,
+  showItemDescription,
   ...other
 }) => {
   let imageEl;
@@ -85,6 +89,7 @@ const ArcgisItemCard = ({
 
   return (
     <StyledItemCard wide={!vertical} vertical={vertical} {...other}>
+      {selectable && <Checkbox checked={checked} onChange={onChange} />}
       {imageEl}
       <StyledItemCardContent>
         <StyledCardItemTitle title={item.title}>
@@ -100,7 +105,7 @@ const ArcgisItemCard = ({
             <span>{_dateFormatter(item.created)}</span>
           </StyledCardItemIconLabelText>
         </StyledCardItemMetrics>
-        {_getDescription()}
+        {showItemDescription && _getDescription()}
         {actions && <StyledActionsContainer>{actions}</StyledActionsContainer>}
       </StyledItemCardContent>
     </StyledItemCard>
@@ -123,13 +128,24 @@ ArcgisItemCard.propTypes = {
   /** Style prop to position Card content vertically */
   vertical: PropTypes.bool,
   /** Whether the ArcgisItemCard shows an actions tab at the bottom or not */
-  actions: PropTypes.object
+  actions: PropTypes.object,
+  /** Whether the ArcgisItemCard is seelctable with a checkbox or not */
+  selectable: PropTypes.bool,
+  /** Whether the Checkbox has actually been checked or not */
+  checked: PropTypes.bool,
+  /** Event called when the Checkbox value should be toggled */
+  onChange: PropTypes.func,
+  /** Property that allows users to hide or display the card's description  */
+  showItemDescription: PropTypes.bool
 };
 
 ArcgisItemCard.defaultProps = {
   showThumbnail: true,
   maxDescriptionLength: 90,
-  vertical: false
+  vertical: false,
+  selectable: false,
+  checked: false,
+  showItemDescription: true
 };
 
 ArcgisItemCard.displayName = 'ArcgisItemCard';
