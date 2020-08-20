@@ -12,7 +12,8 @@ import item from './item.json';
 
 # ArcgisItemCard
 
-A card for ArcGIS items to be displayed as a single UI element.
+A card for ArcGIS items to be displayed as a single UI element. 
+Use the playground to adjust the features displayed on the card.
 
 #### Import Syntax
 
@@ -23,37 +24,22 @@ import ArcgisItemCard from 'calcite-react/ArcgisItemCard'
 ## Basic Usage
 
 <Playground>
-  <ArcgisItemCard item={item}/>
+  <ArcgisItemCard 
+    item={item} 
+    actions={[<StyledUserIcon/>, <StyledCalendarIcon/>]} 
+    selectable 
+  />
 </Playground>
 
 ## Vertical Usage
 
 <Playground>
-  <ArcgisItemCard item={item} vertical />
-</Playground>
-
-## Basic Usage With Actions
-
-<Playground>
-  <ArcgisItemCard item={item} actions={[<StyledUserIcon/>, <StyledCalendarIcon/>]}/>
-</Playground>
-
-## Vertical Usage With Actions
-
-<Playground>
-  <ArcgisItemCard item={item} vertical actions={[<StyledUserIcon/>, <StyledCalendarIcon/>]}/>
-</Playground>
-
-## Basic Usage With Selectability
-
-<Playground>
-  <ArcgisItemCard item={item} selectable/>
-</Playground>
-
-## Vertical Usage With Selectability
-
-<Playground>
-  <ArcgisItemCard item={item} vertical selectable/>
+  <ArcgisItemCard 
+    item={item} 
+    vertical 
+    actions={[<StyledUserIcon/>, <StyledCalendarIcon/>]} 
+    selectable 
+  />
 </Playground>
 
 ## Props
